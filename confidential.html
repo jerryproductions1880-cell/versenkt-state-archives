@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Confidential Access Portal</title>
+
+<style>
+
+body{
+    background:#330000;
+    color:white;
+    font-family:Tahoma,Arial,sans-serif;
+    margin:0;
+}
+
+#container{
+    width:900px;
+    margin:30px auto;
+    background:#f5f2e8;
+    color:black;
+    border:3px solid darkred;
+}
+
+#header{
+    background:#7b0000;
+    color:white;
+    padding:20px;
+    text-align:center;
+    border-bottom:5px solid gold;
+}
+
+#header h1{
+    margin:0;
+    font-family:"Times New Roman";
+    font-size:42px;
+}
+
+#warning{
+    margin:25px;
+    padding:20px;
+    border:3px solid red;
+    background:#fff7d9;
+    line-height:26px;
+}
+
+#warning h2{
+    color:darkred;
+    text-align:center;
+    margin-top:0;
+}
+
+#login{
+    text-align:center;
+    padding:20px;
+}
+
+input[type=password]{
+
+    width:250px;
+    padding:6px;
+    font-size:16px;
+
+}
+
+button{
+
+    padding:6px 15px;
+    font-size:15px;
+    font-weight:bold;
+
+}
+
+#status{
+
+    color:darkred;
+    font-weight:bold;
+    margin-top:15px;
+
+}
+
+#footer{
+
+    background:#7b0000;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+    font-size:12px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="alarm">
+<source src="alarm.mp3" type="audio/mpeg">
+</audio>
+
+<div id="container">
+
+<div id="header">
+
+<h1>CONFIDENTIAL ACCESS PORTAL</h1>
+
+<b>National Federal Government of Vinlutz</b>
+
+</div>
+
+<div id="warning">
+
+<h2>FEDERAL WARNING</h2>
+
+<p>
+
+YOU ARE ENTERING CONFIDENTIAL GOVERNMENT PROPERTY.
+
+</p>
+
+<p>
+
+This information system is owned and operated by the National Federal Government of Vinlutz.
+
+Access is intended solely for authorized personnel, archivists, federal officers, and employees acting within the scope of their official duties.
+
+</p>
+
+<p>
+
+If you are <b>NOT</b> affiliated with the National Federal Government of Vinlutz, you are instructed to terminate this session immediately.
+
+</p>
+
+<p>
+
+Unauthorized access to restricted archival collections may be monitored, recorded, and reviewed under applicable federal regulations.
+
+By continuing beyond this point, you acknowledge that you have read and understood this notice.
+
+</p>
+
+</div>
+
+<div id="login">
+
+<h3>ENTER ACCESS PASSWORD</h3>
+
+<input type="password" id="password">
+
+<button onclick="login()">ENTER</button>
+
+<p id="status">
+
+Remaining Attempts: 3
+
+</p>
+
+</div>
+
+<div id="footer">
+
+National Federal Government of Vinlutz
+
+<br>
+
+Classified Archives Division
+
+<br><br>
+
+Authorized Personnel Only
+
+<br><br>
+
+© 2008 Federal Records Administration
+
+</div>
+
+</div>
+
+<script>
+
+var attempts = 3;
+
+function login(){
+
+var pass = document.getElementById("password").value;
+
+if(pass=="TITANIC"){
+
+window.location="declassified.html";
+
+}
+
+else{
+
+attempts--;
+
+document.getElementById("status").innerHTML="Incorrect Password<br>Remaining Attempts: "+attempts;
+
+if(attempts<=0){
+
+document.getElementById("status").innerHTML="<span style='color:red;font-size:22px;'>ACCESS DENIED</span><br><br>Unauthorized access detected.<br>Returning to the Public Archives...";
+
+document.getElementById("password").disabled=true;
+
+document.querySelector("button").disabled=true;
+
+document.getElementById("alarm").play();
+
+setTimeout(function(){
+
+window.location="index.html";
+
+},5000);
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
